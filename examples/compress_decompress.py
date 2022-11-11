@@ -1,8 +1,10 @@
+import inaccel.coral as inaccel
 import numpy as np
 
 from inaccel.gzip import compress
 from gzip import decompress
 
-data = np.random.bytes(1024)
+with inaccel.allocator:
+    udata = np.random.randn(1000000).astype(np.ubyte)
 
-assert decompress(compress(data)) == data
+assert decompress(compress(udata.data)) == udata.data
