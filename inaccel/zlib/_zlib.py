@@ -51,7 +51,7 @@ def compress(data, *, level=zlib.Z_BEST_SPEED, wbits=zlib.MAX_WBITS):
     req = inaccel.request('intel.compression.gzip')
 
     req.arg(data_size) \
-        .arg_array(np.frombuffer(data)) \
+        .arg_array(np.frombuffer(data, dtype=np.ubyte)) \
         .arg(data_size) \
         .arg(nil) \
         .arg(compressed_data[64:]) \
