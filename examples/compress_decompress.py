@@ -5,6 +5,6 @@ from inaccel.gzip import compress
 from gzip import decompress
 
 with inaccel.allocator:
-    udata = np.random.randn(1000000).astype(np.ubyte)
+    data = np.random.randn(1000000).astype(np.ubyte).data
 
-assert decompress(compress(udata.data)) == udata.data
+assert decompress(compress(data)) == data
